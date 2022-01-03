@@ -5,22 +5,23 @@ import { useState } from 'react/cjs/react.development';
 
 const Midheader = () => {
     const {total, setTotal} = useGlobalContext();
-    const [totalamount, setTotalAmount] = useState(0);
+    /* const [totalamount, setTotalAmount] = useState(0); */
+    const [cartItem, setCartItem] = useState();
 
-    let cartItem = JSON.parse(localStorage.getItem('cartItem'));
     React.useEffect(() => {
-        cartItem = JSON.parse(localStorage.getItem('cartItem'));
-        console.log(cartItem);
+        setCartItem(JSON.parse(localStorage.getItem('cartItem')))
+        
+        if(cartItem && cartItem.length > 0){
+            const totalPrice = cartItem.map(item => {
+                return item.amount * item.price
+            });
+            const updateTotal = totalPrice.reduce((sum, value) => {
+                return sum + value;
+            })
+            setTotal(updateTotal);
+        };
     }, [total]);
 
-    if(cartItem && cartItem.length > 0){
-        const totalPrice = cartItem.map(item => {
-            return item.amount * item.price
-        });
-        setTotal(totalPrice.reduce((sum, value) => {
-            return sum + value;
-        }));
-    };
 
     return ( 
         <header className='header'>
@@ -57,7 +58,7 @@ const Midheader = () => {
                                 <div className='cart'>
                                     <button><FaShoppingBag/></button>
                                     <p>Giỏ hàng</p>
-                                    <span>{totalamount}</span>
+                                    <span>0</span>
                                 </div>
                                 <div className='cart-small-container'>
                                     {cartItem && cartItem.map(item => {

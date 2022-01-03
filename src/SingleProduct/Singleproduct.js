@@ -134,7 +134,7 @@ const Singleproduct = () => {
                             <label>Số lượng:</label>
                             <div className="modifynumber-container">
                                 <button className="btn-left" onClick={() => decreaseNum(number)}>-</button>
-                                <input type='text' value={number}></input>
+                                <input type='text' value={number} onChange={(e) => setNumber(e.target.value)}></input>
                                 <button className="btn-right" onClick={() => increaseNum(number)}>+</button>
                             </div>
                             <div className="addcart-btn-container">
