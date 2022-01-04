@@ -17,18 +17,18 @@ const Section3 = () => {
                         {tetproducts && tetproducts.map((product, index) => {
                             if(index < 5){
                                 return <div className="tet-product" key={index}>
-                                    <Link className="link-container" to={`/${product.id}`}>
+                                    
                                     <div className="product-thumbnail">
-                                    <a className="img-thumb">
+                                    <Link className="img-thumb" to={`/${product.id}`}>
                                         <img className="image-frame" src={product.frame}></img>
                                         <img className="image" src={product.image}></img>
-                                    </a>
+                                    </Link>
                                     </div>
                                     <div className="product-info">
                                         <h3 className="product-title">{product.title}</h3>
                                         <h5 className="product-price">{product.price}.000đ</h5>
                                     </div>
-                                    </Link>
+                                    
                             </div>
                             }
                         })}

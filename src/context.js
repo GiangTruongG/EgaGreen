@@ -14,7 +14,7 @@ const AppProvider = ({children}) => {
     const [total, setTotal] = useState(0);
 
     const fetchData = async () => {
-        const response = await fetch('http://localhost:5000/products');
+        const response = await fetch('https://61d319b7b4c10c001712b7be.mockapi.io/products');
         const data = await response.json();
         setProducts(data);
         setTetProducts(data.filter(product => product.type === "Sản Phẩm Tết"));

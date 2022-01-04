@@ -22,7 +22,7 @@ const Singleproduct = () => {
     useEffect(() => {
         const fetchSingleProduct = async () => {
             try {
-                const response = await fetch('http://localhost:5000/products');
+                const response = await fetch('https://61d319b7b4c10c001712b7be.mockapi.io/products');
                 const data = await response.json();
                 const speProduct = data.find(product => product.id === +id);
                 setProduct(speProduct);

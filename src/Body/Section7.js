@@ -14,23 +14,23 @@ const Section7 = () => {
                     </div>
                     <div className="product-container-section7">
                         <div className="expand-grid-container">
-                            <a><img src="https://bizweb.dktcdn.net/100/417/051/themes/843817/assets/section_hot.jpg?1640681454607"></img></a>
+                            <a><img src="https://bizweb.dktcdn.net/100/417/051/themes/843817/assets/section_hot.jpg?1640681454607" alt="img"></img></a>
                         </div>
                         {vegproducts && vegproducts.map((product, index) => {
                             if(index < 8){
                                 return <div className="veg-product" key={index}>
-                                <Link className="link-container" to={`/${product.id}`}>
+                                
                                     <div className="veg-product-thumbnail">
-                                        <a className="veg-img-thumb">
+                                        <Link className="veg-img-thumb" to={`/${product.id}`}>
                                             <img className="veg-image-frame" src={product.frame}></img>
                                             <img className="veg-image" src={product.image}></img>
-                                        </a>
+                                        </Link>
                                     </div>
                                     <div className="product-info">
                                         <h3 className="product-title">{product.title}</h3>
                                         <h5 className="product-price">{product.price}.000đ</h5>
                                     </div>
-                                </Link>
+                                
                             </div>
                             }
                         })}
