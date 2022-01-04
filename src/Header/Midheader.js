@@ -1,7 +1,7 @@
 import { FaSearch, FaShoppingBag } from 'react-icons/fa';
 import React from 'react';
 import { useGlobalContext } from '../context';
-import { useState } from 'react/cjs/react.development';
+import { useState } from 'react';
 
 const Midheader = () => {
     const {total, setTotal} = useGlobalContext();

@@ -1,6 +1,6 @@
 import { useGlobalContext } from "../context";
 import { FaChevronRight } from 'react-icons/fa';
-import { useEffect, useState } from "react/cjs/react.development";
+import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 
 const Section9 = () => {

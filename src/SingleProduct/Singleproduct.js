@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState, useRef } from "react/cjs/react.development";
+import { useEffect, useState, useRef } from "react";
 import { useGlobalContext } from "../context";
 import { FaGift, FaCheckCircle, FaTimes } from "react-icons/fa";
 import Loading from "../Loading";
