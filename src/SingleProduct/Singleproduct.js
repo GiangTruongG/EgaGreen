@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react/cjs/react.development";
+import { useEffect, useState, useRef } from "react/cjs/react.development";
 import { useGlobalContext } from "../context";
-import { FaGift } from "react-icons/fa";
+import { FaGift, FaCheckCircle, FaTimes } from "react-icons/fa";
+import Loading from "../Loading";
 
 const getLocalStorage = () => {
     const listItem = JSON.parse(localStorage.getItem('cartItem'));
@@ -18,6 +19,7 @@ const Singleproduct = () => {
     const [product, setProduct] = useState(null);
     const [number, setNumber] = useState(1); 
     const [cartItem, setCartItem] = useState(getLocalStorage());
+    const modal = useRef(null);
 
     useEffect(() => {
         const fetchSingleProduct = async () => {
@@ -50,7 +52,7 @@ const Singleproduct = () => {
     };
 
     if(!product){
-        return <h1>Loading ...</h1>
+        return <Loading />
     };
 
     const handleSubmit = (id, amount) => {
@@ -65,28 +67,32 @@ const Singleproduct = () => {
                 }
                 return item;
             })
-            const totalPrice = cartItem.map(item => {
-                return item.amount * item.price
-            })
-            if(cartItem && cartItem.length > 0){
+            
+                const totalPrice = newCartItem.map(item => {
+                    return item.amount * item.price
+                })
                 setTotal(totalPrice.reduce((total, value) => {
                     return total + value;
                 }))
-            }
             
+            modal.current.style.display = `block`;
             return localStorage.setItem('cartItem', JSON.stringify(newCartItem))
         };
         
         cartItem.push({...product, amount: +amount + 0});
-        if(cartItem && cartItem.length > 0){
+        
             const totalPrice = cartItem.map(item => {
                 return item.amount * item.price
             })
             setTotal(totalPrice.reduce((total, value) => {
                 return total + value;
             }))
-        }
+            modal.current.style.display = `block`;
         return localStorage.setItem('cartItem', JSON.stringify(cartItem));
+    };
+
+    const closeModal = () => {
+        modal.current.style.display = `none`;
     }
 
 
@@ -170,6 +176,16 @@ const Singleproduct = () => {
                             </a>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div className="modal-background" ref={modal} >
+                <div className="modal">
+                    <div>
+                        <FaCheckCircle className="modal-check" />
+                        <h3>Sản phẩm vừa được thêm vào giỏ hàng</h3> 
+                    </div>
+                    <FaTimes className="modal-close-btn" onClick={() => closeModal()} />
                 </div>
             </div>
         </section>

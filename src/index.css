@@ -143,6 +143,7 @@ body {
     font-size: 20px;
     display: flex;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .navbar-container .navbar a:hover {
@@ -176,7 +177,7 @@ body {
     position: absolute;
     box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.2);
     display: none;
-    z-index: 1;
+    z-index: 2;
     background-color: #ffffff;
 }
 
@@ -222,6 +223,7 @@ body {
     width: 230px;
     display: none;
     background-color: #ffffff;
+    z-index: 2;
 }
 
 .navbar-container .navbar .sale-programs .sale-submenu ul {
@@ -767,21 +769,29 @@ body {
 }
 
 .modifynumber-container .btn-left {
+    width: 50px;
     padding: 10px;
     border: 1px solid #ced4da;
     border-radius: 5px 0 0 5px;
     background-color: transparent;
+    font-size: 30px;
+    color: #3a445e;
+    cursor: pointer;
 }
 
 .modifynumber-container .btn-right {
+    width: 50px;
     padding: 10px;
     border: 1px solid #ced4da;
     border-radius: 0 5px 5px 0;
     background-color: transparent;
+    font-size: 30px;
+    color: #3a445e;
+    cursor: pointer;
 }
 
 .modifynumber-container input {
-    width: 60px;
+    width: 100px;
     padding: 10px;
     border-bottom: 1px solid #ced4da;
     border-top: 1px solid #ced4da;
@@ -789,6 +799,8 @@ body {
     border-right: none;
     text-align: center;
     outline: none;
+    font-size: 30px;
+    color: #3a445e;
 }
 
 .addcart-btn-container button {
@@ -854,16 +866,15 @@ body {
 /* Cart styling */
 .cart-big-container {
     position: relative;
-    cursor: pointer;
 }
 
 .cart-big-container:hover .cart-small-container {
     display: block;
 }
 
-.cart-small-container:hover .cart-small-container {
+/* .cart-small-container:hover .cart-small-container {
     display: block;
-}
+} */
 
 .cart-small-container {
     position: absolute;
@@ -873,6 +884,8 @@ body {
     background-color: #ffffff;
     width: 450px;
     display: none;
+    height: 300px;
+    overflow: scroll;
 }
 
 .cart-small-container h3 {
@@ -891,6 +904,8 @@ body {
     align-items: center;
     /* justify-content: space-between; */
     border-bottom: 1px solid #e6e3e3;
+    height: 100px;
+    position: relative;
 }
 
 .cart-item div {
@@ -905,10 +920,17 @@ body {
 }
 
 .cart-item button {
-    border: none;
+    border: 2px solid #3a445e;
+    border-radius: 6px;
     background-color: transparent;
     font-weight: 800;
     color: #3a445e;
+    cursor: pointer;
+}
+
+.cart-item button:hover {
+    background-color: #3a445e;
+    color: #ffffff;
 }
 
 .cart-item span {
@@ -916,3 +938,70 @@ body {
     font-weight: bold;
 }
 
+.cart-btn-right {
+    position: absolute;
+    right: 0;
+    top: 28%;
+}
+
+
+
+/* Loading */
+.loading {
+    color: #008848;
+    width: 300px;
+    margin: 50px auto;
+    text-align: center;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+
+/* Modal */
+.modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal {
+    position: relative;
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    width: 500px;
+    height: 150px;
+    margin: 300px auto;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal div {
+    display: flex;
+    align-items: center;
+    margin: 15px auto;
+}
+
+.modal div h3 {
+    margin-left: 10px;
+    color: #3a445e;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: #3a445e;
+    cursor: pointer;
+}
+
+.modal-check {
+    font-size: 20px;
+    color: #3a445e;
+}

@@ -5,22 +5,31 @@ import { useState } from 'react/cjs/react.development';
 
 const Midheader = () => {
     const {total, setTotal} = useGlobalContext();
-    /* const [totalamount, setTotalAmount] = useState(0); */
     const [cartItem, setCartItem] = useState();
 
     React.useEffect(() => {
         setCartItem(JSON.parse(localStorage.getItem('cartItem')))
         
-        if(cartItem && cartItem.length > 0){
-            const totalPrice = cartItem.map(item => {
-                return item.amount * item.price
-            });
-            const updateTotal = totalPrice.reduce((sum, value) => {
-                return sum + value;
-            })
-            setTotal(updateTotal);
-        };
     }, [total]);
+
+    const handleDelete = (id) => {
+        const newCartItem = cartItem.filter(item => item.id !== id);
+        setCartItem(newCartItem);
+        
+        if(newCartItem.length === 0){
+            localStorage.setItem('cartItem', JSON.stringify(newCartItem));
+            return setTotal(0);
+        }
+
+        const totalPrice = newCartItem.map(item => {
+            return item.amount * item.price
+        })
+        setTotal(totalPrice.reduce((total, value) => {
+            return total + value;
+        }));
+
+        return localStorage.setItem('cartItem', JSON.stringify(newCartItem));
+    }
 
 
     return ( 
@@ -58,18 +67,17 @@ const Midheader = () => {
                                 <div className='cart'>
                                     <button><FaShoppingBag/></button>
                                     <p>Giỏ hàng</p>
-                                    <span>0</span>
                                 </div>
                                 <div className='cart-small-container'>
                                     {cartItem && cartItem.map(item => {
                                         return <div className='cart-item' key={item.id}>
                                             <div><img src={item.image} alt='img'></img></div>
-                                            <div>
-                                                <h5>{item.title}</h5>
-                                                <p><span>{item.price}.000đ</span> x {item.amount}</p>
-                                            </div>
-                                            <div>
-                                                <button>X</button>
+                                                <div>
+                                                    <h5>{item.title}</h5>
+                                                    <p><span>{item.price}.000đ</span> x {item.amount}</p>
+                                                </div>
+                                            <div className='cart-btn-right'>
+                                                <button onClick={() => handleDelete(item.id)}>X</button>
                                             </div>
                                         </div>
                                     })}

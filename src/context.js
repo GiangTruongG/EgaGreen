@@ -28,6 +28,16 @@ const AppProvider = ({children}) => {
 
     useEffect(() => {
         fetchData();
+
+        const cartItem = JSON.parse(localStorage.getItem('cartItem'));
+        if(cartItem && cartItem.length > 0){
+            const totalPrice = cartItem.map(item => {
+                return item.amount * item.price
+            })
+            setTotal(totalPrice.reduce((total, value) => {
+                return total + value;
+            }))
+        }
     }, []);
 
     

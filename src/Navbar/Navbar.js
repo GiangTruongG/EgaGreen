@@ -4,7 +4,7 @@ const Navbar = () => {
     return ( 
         <nav className="navbar-container">
             <div className="navbar">
-                <a>TRANG CHỦ</a>
+                <a href='/'>TRANG CHỦ</a>
                 <li className='menu-item'>
                     <a className='product'>SẢN PHẨM
                         <FaChevronDown />
